@@ -11,12 +11,19 @@ typedef unsigned packed_t;
  *  */
 int leftmost_one(unsigned x) {
 
+
+    return 0;
+}
+
+void test_leftmost_one() {
+    unsigned num = rand() & 0xFFFFFFFF; 
+    int leftmost = leftmost_one(num);
+    printf("the leftmost one of %08x is %08x\n", num, leftmost);
 }
 
 /* 2.71:
  * Extract byte from word.  Return as signed integer */
 int xbyte(packed_t word, int bytenum) {
-// Use only left and right shifts, and one subtraction.
 
     word = (word >> (bytenum << 3)) & 0xFF;
     int mask = word & 0x00000080;
@@ -56,6 +63,7 @@ void copy_int(int val, void *buf, int maxbytes) {
  * */
 
 int main() {
-
+    //test_xbyte();
+    test_leftmost_one();
 }
 
