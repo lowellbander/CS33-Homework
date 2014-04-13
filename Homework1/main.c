@@ -19,13 +19,26 @@ int xbyte(packed_t word, int bytenum) {
 // Use only left and right shifts, and one subtraction.
 
     word = (word >> (bytenum << 3)) & 0xFF;
-    int mask = (word << 24) >> 24;
-    printf("mask is %08x\n", mask);
-    return word;
+    int mask = word & 0x00000080;
+    mask = (mask << 24) >> 24;
+    return word | mask;
 
 // My predecessor's code is incorrect because it treats the packed bytes as
 // unsigned rather than signed. This results in errors such as
 // xbyte(0x0000FF00, 1) returning 255 instead of -1.
+}
+
+void test_xbyte() {
+    packed_t packed = rand() & 0xFFFFFFFF;
+    printf("packed:   %08X\n", packed);
+    int zero = xbyte(packed, 0);
+    int one = xbyte(packed, 1);
+    int two = xbyte(packed, 2);
+    int three = xbyte(packed, 3);
+    printf("zero:     %08X\n", zero);
+    printf("one:      %08X\n", one);
+    printf("two:      %08X\n", two);
+    printf("three:    %08X\n", three);
 }
 
 /* 2.72:
@@ -44,18 +57,5 @@ void copy_int(int val, void *buf, int maxbytes) {
 
 int main() {
 
-    // Test cases for xbyte()
-
-    // packed_t packed = rand() & 0xFF;
-    packed_t packed = 0x12345678;
-    printf("packed:   %08X\n", packed);
-    int zero = xbyte(packed, 0);
-    int one = xbyte(packed, 1);
-    int two = xbyte(packed, 2);
-    int three = xbyte(packed, 3);
-    printf("zero:     %08X\n", zero);
-    printf("one:      %08X\n", one);
-    printf("two:      %08X\n", two);
-    printf("three:    %08X\n", three);
 }
 
