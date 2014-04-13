@@ -11,7 +11,6 @@ typedef unsigned packed_t;
  *  */
 int leftmost_one(unsigned x) {
 
-
     return 0;
 }
 
@@ -51,7 +50,23 @@ void test_xbyte() {
 /* 2.72:
  * Copy integer into buffer if space is available */
 void copy_int(int val, void *buf, int maxbytes) {
+    if (maxbytes-sizeof(val) >= 0) {
+        printf("Copied value into buffer!\n");
+    } else {
+        printf("Didn't copy value into buffer!\n");
+    }
 
+// The conditional test in the given code always succeeds because when signed
+// (e.g. maxbytes) and unsigned (e.g. sizeof(val)) values are mixed in a singled
+// expression, the result is unsigned. Unsigned values are always nonnegative,
+// and so the original comparison will always return true.
+}
+
+void test_copy_int() {
+   int val = 3;
+   char* buffer;
+   int max = 2;
+   copy_int(val, buffer, max);
 }
 
 /* 2.81:
@@ -64,6 +79,7 @@ void copy_int(int val, void *buf, int maxbytes) {
 
 int main() {
     //test_xbyte();
-    test_leftmost_one();
+    //test_leftmost_one();
+    test_copy_int();
 }
 
