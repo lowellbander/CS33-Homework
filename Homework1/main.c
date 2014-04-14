@@ -77,7 +77,10 @@ void test_copy_int() {
  * left of y on the number line, then -x is right of -y on the number line. That
  * is, -x os greater than -y.
  *
- * B:
+ * B: Always yields 1. Left shifting by 4 is equivalent to multiplying by 16, so
+ *          ((x+y)<<4) + y-x = 16(x+y) + y-x
+ *                           = 16x + 16y + y - x
+ *                           = 17y + 15x
  * 
  * C: 
  * 
