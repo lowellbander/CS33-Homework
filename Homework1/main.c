@@ -50,30 +50,39 @@ void test_xbyte() {
 /* 2.72:
  * Copy integer into buffer if space is available */
 void copy_int(int val, void *buf, int maxbytes) {
-    if (maxbytes-sizeof(val) >= 0) {
+    if (maxbytes - sizeof(val) >= 0) {
         printf("Copied value into buffer!\n");
     } else {
         printf("Didn't copy value into buffer!\n");
     }
 
 // The conditional test in the given code always succeeds because when signed
-// (e.g. maxbytes) and unsigned (e.g. sizeof(val)) values are mixed in a singled
+// (e.g. maxbytes) and unsigned (e.g. sizeof(val)) values are mixed in a single
 // expression, the result is unsigned. Unsigned values are always nonnegative,
 // and so the original comparison will always return true.
 }
 
 void test_copy_int() {
-   int val = 3;
-   char* buffer;
+   int foo = 3;
+   int bar = 3;
    int max = 2;
-   copy_int(val, buffer, max);
+   char* buffer;
+   copy_int(foo, buffer, max);
+   copy_int(bar, buffer, max);
 }
 
 /* 2.81:
- * A:
+ * A: Always yields 1. If x and y are on a number line, then x less than y means
+ * x is to the left of y. Negation is symmetric about the origin, so if x is
+ * left of y on the number line, then -x is right of -y on the number line. That
+ * is, -x os greater than -y.
+ *
  * B:
+ * 
  * C: 
+ * 
  * D:
+ * 
  * E:
  * */
 
