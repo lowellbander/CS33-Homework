@@ -86,7 +86,21 @@ void test_copy_int() {
  * 
  * D:
  * 
- * E:
+ * E: Always yields 1. Proof by cases:
+ *      case 1: x = 0
+ *          The shift operations do nothing. LHS = RHS.
+ *      case 2: x < 0 and the two least significant bits are zero
+ *          The shift operations do nothing. LHS = RHS.
+ *      case 3: x > 0 and the two least significant bits are zero
+ *          The shift operations do nothing. LHS = RHS.
+ *      case 4: x < 0 and at least one of the least signficant bits are nonzero
+ *          The shift operation makes the two least significant bits zero, and
+ *          thus the shifted value is more negative than the original value. 
+ *          LHS < RHS
+ *      case 5: x > 0 and at least one of the least signficant bits are nonzero
+ *          The shift operation makes the two least significant bits zero, and
+ *          thus the shifted value is less positive than the original value. 
+ *          LHS < RHS
  * */
 
 int main() {
