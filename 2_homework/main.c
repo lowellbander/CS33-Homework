@@ -4,32 +4,31 @@
 
 // 3.56
 int loop(int x, int n) {
-    // int result = _____;
-    // int mask;
-    // for (mask = _____; mask ￼_____ ; mask = ￼_____ ) { 
-    //   result ^= _____;
-    // }
-    // return result;
 
     /*
      * A)   %esi = x
      *      %ebx = n
      *      %edi = result
-     *      %eax = mask
+     *      %edx = mask
      *
      * B)   result = -1
-     *      mask  =   1
+     *      mask   =  1
      *
-     * C)
+     * C)   mask != 0
      *
-     * D)
+     * D)   mask <<= n
      *
-     * E)
+     * E)   result ^= mask & x
      *
-     * F)
+     * F)   see below
      * */
 
-
+    int result = -1;
+    int mask;
+    for (mask = 1; mask￼!= 0; mask <<= n) { 
+      result ^= mask & x;
+    }
+    return result;
 }
 
 // 3.59
