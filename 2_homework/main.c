@@ -35,24 +35,27 @@ int loop(int x, int n) {
 int switch_prob(int x, int n) {
     int result = x;
 
+    /*  min val = 0x32
+     *  max val = 0x32 + 5 = 0x37
+     * */
+
     switch(n) {
-        case 1:
-            
+        case 0x32:
+        case 0x34:
+            result <<= 2;
             break;
-        case 2:
-            
+        case 0x35:
+            result >>= 2;
             break;
-        case 3:
-            
+        case 0x36:
+            result *= 3;
             break;
-        case 4:
-            
+        case 0x37:
+            result *= result;
             break;
-        case 5:
-            
-            break;
+        case 0x33: //superfluous
         default:
-            x += 10;
+            result += 10;
             break;
     }
 
