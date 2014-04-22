@@ -17,7 +17,8 @@ int loop(int x, int n) {
      *      %edi = result
      *      %eax = mask
      *
-     * B)
+     * B)   result = -1
+     *      mask  =   1
      *
      * C)
      *
