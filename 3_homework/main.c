@@ -9,8 +9,8 @@
  *      16(%ebp) == &y == s1.p
  *
  * B)   in descreasing order of memory address:
- *      > x + y == result.sum == s2.sum
  *      > x - y == result.diff == s2.diff
+ *      > x + y == result.sum == s2.sum
  *      > &y == s1.p
  *      > x == s1.a
  *      > &s2   // used by prod to indicate location of s2.sum, s2.diff when
