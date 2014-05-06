@@ -5,8 +5,8 @@
 
 // 3.64
 /* A)   8(%ebp) == &s2
- *      12(%ebp) == x
- *      16(%ebp) == &y
+ *      12(%ebp) == x == s1.a
+ *      16(%ebp) == &y == s1.p
  *
  * B)   in descreasing order of memory address:
  *      > x + y == result.sum == s2.sum
@@ -37,7 +37,7 @@
  * C) (below)
  * */
 void proc (union ele *up) {
-    up->y = *(up->next->x) - up->x;
+    up->y = *(up->next->p) - up->x;
 }
 
 int main() {
