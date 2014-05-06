@@ -8,11 +8,19 @@
  *      12(%ebp) == x
  *      16(%ebp) == &y
  *
- * B)
+ * B)   in descreasing order of memory address:
+ *      > x + y == result.sum == s2.sum
+ *      > x - y == result.diff == s2.diff
+ *      > &y == s1.p
+ *      > x == s1.a
+ *      > &s2   // used by prod to indicate location of s2.sum, s2.diff when
+ *      multiplying them together to yield the final return value
  *
- * C) 
+ * C)   The attributes of a struct are pushed onto the stack during argument
+ *      build when the struct is used as an argument of the C function.
  *
- * D)
+ * D)   The attributes of a returned struct are moved into caller-allocated 
+ *      memory.
  *
  * */
 
