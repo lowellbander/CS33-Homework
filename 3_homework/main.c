@@ -14,7 +14,7 @@
  *      > &y == s1.p
  *      > x == s1.a
  *      > &s2   // used by prod to indicate location of s2.sum, s2.diff when
- *      multiplying them together to yield the final return value
+ *      multiplying them together to yield the final return value.
  *
  * C)   The attributes of a struct are pushed onto the stack during argument
  *      build when the struct is used as an argument of the C function.
@@ -25,14 +25,19 @@
  * */
 
 //3.67
-/* A) 
+/* A)   e1.p: 0 Bytes
+ *      e1.y: 4 Bytes       // assuming 32-bit machine
+ *                          // would be 8 Bytes on a 64-bit machine
+ *      e2.x: 0 Bytes
+ *      e2.next: 4 Bytes    // same disclaimer as above
  *
- * B)
+ * B)   The struct(s) would require a total of 8 Bytes on a 32-bit machine, or
+ *      12 Bytes on a 64-bit machine.
  *
  * C) (below)
  * */
 void proc (union ele *up) {
-    up-> _____ = *(up-> ____) - up-> ____;
+    up->y = *(up->next->x) - up->x;
 }
 
 int main() {
